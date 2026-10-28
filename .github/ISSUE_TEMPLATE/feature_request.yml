@@ -1,0 +1,48 @@
+name: "✨ 기능 제안"
+description: "새로운 기능이나 개선 사항을 제안합니다."
+title: "[FEATURE] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        구현하고 싶은 기능을 구체적으로 작성해주세요.
+  - type: textarea
+    id: summary
+    attributes:
+      label: 기능 요약
+      description: 어떤 기능을 추가하고 싶은가요?
+      placeholder: 예) 프로젝트 목록에 기술 스택별 필터 추가
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: 필요한 이유
+      description: 이 기능이 필요한 이유와 해결하려는 문제를 작성해주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: 제안하는 구현 방법
+      description: 생각해 둔 구현 방식이나 UI가 있다면 작성해주세요.
+    validations:
+      required: false
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 완료 조건
+      description: 어떤 상태가 되면 이 기능이 완료되었다고 볼 수 있나요?
+      placeholder: |
+        - [ ] 필터를 선택할 수 있음
+        - [ ] 선택한 조건에 맞는 프로젝트만 표시됨
+    validations:
+      required: true
+  - type: input
+    id: branch
+    attributes:
+      label: 작업 브랜치(선택)
+      placeholder: feat/project-filter
+    validations:
+      required: false

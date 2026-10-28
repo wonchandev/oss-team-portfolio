@@ -6,7 +6,7 @@
 
 **팀명:** D팀
 
-**배포 주소:** 준비중
+**배포 주소:** https://wonchandev.github.io/oss-team-portfolio/
 
 **저장소:** https://github.com/wonchandev/oss-team-portfolio
 

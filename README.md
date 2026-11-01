@@ -149,7 +149,7 @@ PR에는 다음 내용을 포함합니다.
 | 최요한 | https://github.com/yohan070312 |
 | 이성민 | https://github.com/csckcsj |
 | 이세루 | https://github.com/lily0012331-sketch |
-| 이동우 | https://github.com/Se-a11y-spec |
+| 이동우 | https://github.com/SSe-a11y-spec |
 
 ## 📚 프로젝트를 통해 기대하는 것
 

@@ -158,8 +158,8 @@ PR에는 다음 내용을 포함합니다.
 | 배하엘 | https://github.com/AAA-bae |
 | 최요한 | https://github.com/yohan070312 |
 | 이성민 | https://github.com/csckcsj |
-| 이세루 | https://github.com/lily0012331-sketch |
-| 이동우 | https://github.com/SSe-a11y-spec |
+| 이세루 | https://github.com/SSe-a11y-spec |
+| 이동우 | https://github.com/lily0012331-sketch |
 
 ## 🗂 역할 분담
 

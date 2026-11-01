@@ -62,9 +62,19 @@
 
 ```text
 oss-team-portfolio/
-├── index.html
+├── index.html          # 메인 페이지
+├── about.html          # 팀 소개
+├── members.html        # 팀원 프로필
+├── projects.html       # 프로젝트 갤러리
+├── activities.html     # 활동 기록
+├── css/                # 공통 및 페이지별 스타일
+├── js/                 # 공통 및 페이지별 스크립트
+├── images/             # 이미지 및 아이콘
+├── docs/               # 기획서 등 문서
 └── README.md
 ```
+
+※ 위 구조는 계획이며, 개발 진행에 따라 파일이 추가됩니다.
 
 ## 🌿 Git 브랜치 전략
 
@@ -149,7 +159,20 @@ PR에는 다음 내용을 포함합니다.
 | 최요한 | https://github.com/yohan070312 |
 | 이성민 | https://github.com/csckcsj |
 | 이세루 | https://github.com/lily0012331-sketch |
-| 이동우 | https://github.com/Se-a11y-spec |
+| 이동우 | https://github.com/SSe-a11y-spec |
+
+## 🗂 역할 분담
+
+| 팀원 | 담당 기능 |
+| --- | --- |
+| 이원찬 (PM) | 메인 페이지, 공통 헤더·푸터·내비게이션·디자인, 반응형 웹 디자인, 저장소 관리, 배포, 발표 |
+| 배하엘 | 팀 소개 페이지, 연락처 및 문의 기능 |
+| 최요한 | 팀원 프로필, 이미지 및 아이콘 관리 |
+| 이성민 | 프로젝트 갤러리, 프로젝트 검색·필터 |
+| 이세루 | 활동 기록 페이지, FAQ 페이지 |
+| 이동우 | 프로젝트 상세 페이지, 웹 접근성 개선 및 사용성·화면 테스트 |
+
+세부 작업과 진행 상태는 [Issues](https://github.com/wonchandev/oss-team-portfolio/issues)에서 확인할 수 있습니다.
 
 ## 📚 프로젝트를 통해 기대하는 것
 

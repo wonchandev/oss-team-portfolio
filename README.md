@@ -145,7 +145,7 @@ PR에는 다음 내용을 포함합니다.
 | 이름 | GitHub |
 | --- | --- |
 | 이원찬 | https://github.com/wonchandev |
-| 배하엘 | - |
+| 배하엘 | https://github.com/AAA-bae |
 | 최요한 | https://github.com/yohan070312 |
 | 이성민 | https://github.com/csckcsj |
 | 이세루 | https://github.com/lily0012331-sketch |

@@ -3,9 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebPage</title>
+    <meta name="description" content="D팀 포트폴리오 - D = Dev Log. 팀원의 역량과 프로젝트, 협업 과정을 개발 일지처럼 기록합니다.">
+    <title>D팀 | D = Dev Log</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-    <h1>Main Page</h1>
+    <div id="site-header"></div>
+
+    <main id="main">
+        <!-- 히어로: 터미널 느낌의 팀 소개 -->
+        <section class="hero">
+            <div class="container">
+                <p class="hero-eyebrow">오픈소스SW활용 팀 프로젝트</p>
+                <h1 class="hero-title">D팀<span class="hero-sub">D = Dev Log</span></h1>
+                <p class="hero-desc">
+                    팀원 6명이 함께 만든 코드와 협업 과정을 개발 일지처럼 기록하는 팀 포트폴리오입니다.
+                </p>
+
+                <div class="terminal" role="img" aria-label="터미널 화면 예시: 팀 이름, 콘셉트, 페이지 목록">
+                    <div class="terminal-bar" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="terminal-body" aria-hidden="true">
+                        <p class="term-line" data-type><span class="prompt">$</span> whoami</p>
+                        <p class="term-out">D팀 (6 members)</p>
+                        <p class="term-line" data-type><span class="prompt">$</span> cat concept.txt</p>
+                        <p class="term-out">D = Dev Log, 우리 팀의 개발 일지</p>
+                        <p class="term-line" data-type><span class="prompt">$</span> ls pages/</p>
+                        <p class="term-out">about&nbsp; members&nbsp; projects&nbsp; activities&nbsp; faq</p>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="about.html">팀 소개 보기</a>
+                    <a class="btn" href="projects.html">프로젝트 보기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 프로젝트 소개 -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">프로젝트 소개</h2>
+                <p class="section-desc">
+                    이 사이트는 Git과 GitHub로 협업하며 HTML, CSS, JavaScript만으로 만든 정적 웹사이트입니다.
+                    기능마다 Issue를 만들고, 브랜치에서 개발한 뒤 Pull Request와 코드 리뷰를 거쳐 병합했습니다.
+                </p>
+                <ul class="feature-list">
+                    <li class="card">
+                        <h3>Issue</h3>
+                        <p>기능마다 담당자와 완료 조건을 정리해 작업을 관리합니다.</p>
+                    </li>
+                    <li class="card">
+                        <h3>Branch &amp; PR</h3>
+                        <p>기능 브랜치에서 개발하고 Pull Request로 변경 내용을 공유합니다.</p>
+                    </li>
+                    <li class="card">
+                        <h3>Review</h3>
+                        <p>팀원의 코드를 서로 검토하고 개선 의견을 남깁니다.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 주요 메뉴 -->
+        <section class="section" id="menu">
+            <div class="container">
+                <h2 class="section-title">주요 메뉴</h2>
+                <ul class="menu-grid">
+                    <li>
+                        <a class="card menu-card" href="about.html">
+                            <span class="menu-cmd">$ cd about</span>
+                            <strong>팀 소개</strong>
+                            <span>팀의 목표와 구성 배경, 활동 방향</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="card menu-card" href="members.html">
+                            <span class="menu-cmd">$ cd members</span>
+                            <strong>팀원 프로필</strong>
+                            <span>6명의 관심 분야와 기술, 학습 목표</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="card menu-card" href="projects.html">
+                            <span class="menu-cmd">$ cd projects</span>
+                            <strong>프로젝트 갤러리</strong>
+                            <span>팀과 개인 프로젝트 결과물</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="card menu-card" href="activities.html">
+                            <span class="menu-cmd">$ cd activities</span>
+                            <strong>활동 기록</strong>
+                            <span>회의와 개발 과정을 담은 개발 일지</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="card menu-card" href="faq.html">
+                            <span class="menu-cmd">$ cd faq</span>
+                            <strong>FAQ</strong>
+                            <span>자주 묻는 질문과 답변</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="js/common.js"></script>
+    <script src="js/home.js"></script>
 </body>
 </html>

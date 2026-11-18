@@ -16,6 +16,32 @@
             <h1 class="page-title">프로젝트 갤러리</h1>
             <p class="page-desc">팀 프로젝트와 팀원 개인 프로젝트 결과물을 모아 두었습니다.</p>
 
+            <!-- 검색·필터 (동작: js/filter.js) -->
+            <section class="filter-panel" aria-label="프로젝트 검색 및 필터">
+                <div class="filter-search">
+                    <label for="project-search">프로젝트 검색</label>
+                    <input id="project-search" type="search" placeholder="제목, 설명, 기술로 검색" autocomplete="off">
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label" id="category-label">분류</span>
+                    <div id="category-filter" role="group" aria-labelledby="category-label">
+                        <button type="button" class="filter-btn" data-value="all" aria-pressed="true">전체</button>
+                        <button type="button" class="filter-btn" data-value="team" aria-pressed="false">팀 프로젝트</button>
+                        <button type="button" class="filter-btn" data-value="personal" aria-pressed="false">개인 프로젝트</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label" id="tech-label">기술</span>
+                    <div id="tech-filter" role="group" aria-labelledby="tech-label"></div>
+                </div>
+                <div class="filter-status">
+                    <p id="project-count" role="status" aria-live="polite">프로젝트 7개</p>
+                    <button type="button" class="filter-reset" id="filter-reset" hidden>필터 초기화</button>
+                </div>
+            </section>
+
+            <p class="project-empty" id="project-empty" hidden>조건에 맞는 프로젝트가 없습니다. 검색어나 필터를 바꿔 보세요.</p>
+
             <!-- 프로젝트 카드 목록
                  카드를 추가할 때는 <li> 하나를 복사해 data-category(team/personal),
                  data-tags, 제목, 설명, 링크만 바꿉니다. (검색·필터가 data 속성을 사용합니다) -->
@@ -116,5 +142,6 @@
 
     <div id="site-footer"></div>
     <script src="js/common.js"></script>
+    <script src="js/filter.js"></script>
 </body>
 </html>

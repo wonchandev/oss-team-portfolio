@@ -1,0 +1,90 @@
+/* ==========================================================
+   프로젝트 갤러리 전용 스타일 (projects.html)
+   색상·폰트는 style.css의 CSS 변수를 사용합니다.
+   ========================================================== */
+
+.project-grid { list-style: none; }
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.project-card:hover,
+.project-card:focus-within {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.project-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  background: linear-gradient(135deg, #0d1117 0%, #1c2a1f 100%);
+  border-bottom: 1px solid var(--border);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.project-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.project-kind {
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.project-title {
+  margin-bottom: 0.4em;
+  font-size: 1.1rem;
+}
+
+.project-desc {
+  flex: 1;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.project-link {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.project-link::before { content: "> "; color: var(--accent); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card { transition: none; }
+  .project-card:hover,
+  .project-card:focus-within { transform: none; }
+}

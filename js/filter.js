@@ -22,12 +22,21 @@
   var state = { query: "", category: "all", tech: "all" };
 
   // 카드별 검색 대상 텍스트를 미리 만들어 둡니다.
+  // 스크린리더 전용 숨김 문구("새 탭" 등)는 검색 대상에서 제외합니다.
+  function searchText(card) {
+    var clone = card.cloneNode(true);
+    Array.prototype.forEach.call(clone.querySelectorAll(".visually-hidden"), function (el) {
+      el.parentNode.removeChild(el);
+    });
+    return clone.textContent.replace(/\s+/g, " ").toLowerCase();
+  }
+
   var index = cards.map(function (card) {
     return {
       el: card,
       category: card.getAttribute("data-category") || "",
       tags: (card.getAttribute("data-tags") || "").split(/\s+/).filter(Boolean),
-      text: card.textContent.replace(/\s+/g, " ").toLowerCase()
+      text: searchText(card)
     };
   });
 

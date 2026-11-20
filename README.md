@@ -148,6 +148,10 @@ PR에는 다음 내용을 포함합니다.
 - 관련 Issue 번호
 
 
+### 병합 충돌 해결 기록
+
+병합 충돌이 발생한 상황과 해결 과정은 [docs/conflict-resolution.md](docs/conflict-resolution.md)에 기록합니다.
+
 ## 🚀 배포
 
 본 프로젝트는 GitHub Pages를 통해 배포합니다.

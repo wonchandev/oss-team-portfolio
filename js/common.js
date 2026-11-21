@@ -108,7 +108,14 @@
   function init() {
     var header = document.getElementById("site-header");
     var footer = document.getElementById("site-footer");
-    if (header) { header.innerHTML = buildHeader(); }
+    if (header) {
+      header.innerHTML = buildHeader();
+      // 404의 base 경로와 관계없이 현재 문서의 본문으로 이동합니다.
+      var skipLink = header.querySelector(".skip-link");
+      if (skipLink) {
+        skipLink.href = window.location.href.split("#")[0] + "#main";
+      }
+    }
     if (footer) { footer.innerHTML = buildFooter(); }
     setupMenu();
   }

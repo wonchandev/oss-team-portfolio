@@ -108,6 +108,8 @@
     state.tech = "all";
     searchInput.value = "";
     render();
+    // 초기화 버튼이 숨겨진 뒤에도 키보드 사용을 이어갈 수 있게 합니다.
+    searchInput.focus();
   }
 
   searchInput.addEventListener("input", function () {

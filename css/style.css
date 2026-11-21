@@ -1,0 +1,397 @@
+/* ==========================================================
+   D팀 포트폴리오 - 공통 스타일 (콘셉트: D = Dev Log)
+   모든 페이지에서 가장 먼저 불러옵니다.
+   색상·폰트는 아래 CSS 변수만 바꿔서 조정합니다.
+   ========================================================== */
+
+:root {
+  --bg: #0d1117;        /* 배경 */
+  --surface: #161b22;   /* 카드 배경 */
+  --border: #30363d;    /* 테두리 */
+  --text: #c9d1d9;      /* 본문 */
+  --muted: #8b949e;     /* 보조 텍스트 */
+  --accent: #3fb950;    /* 포인트(초록) */
+  --link: #58a6ff;      /* 링크(파랑) */
+  --font-sans: "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", Consolas, "SFMono-Regular", Menlo, monospace;
+  --radius: 8px;
+  --header-h: 60px;
+  --container: 1080px;
+}
+
+/* ---------- 기본 ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+main {
+  flex: 1;
+  padding: 40px 0 64px;
+}
+
+h1, h2, h3, h4 {
+  margin: 0 0 0.6em;
+  color: #f0f6fc;
+  font-family: var(--font-mono);
+  line-height: 1.3;
+}
+
+p { margin: 0 0 1em; }
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+img, video { max-width: 100%; height: auto; }
+
+ul { margin: 0; padding: 0; }
+
+/* hidden 속성이 display 지정(flex, grid 등)에 덮이지 않도록 보장
+   (검색·필터, FAQ 접기처럼 JavaScript로 요소를 숨길 때 사용) */
+[hidden] { display: none !important; }
+
+/* 화면에는 보이지 않지만 스크린리더는 읽는 텍스트 (접근성용) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 키보드 사용자를 위한 포커스 표시 */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 본문 바로가기 (키보드·스크린리더용) */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 200;
+  padding: 8px 14px;
+  background: var(--accent);
+  color: #04130a;
+  font-weight: 700;
+  border-radius: var(--radius);
+}
+
+.skip-link:focus { top: 8px; text-decoration: none; }
+
+/* ---------- 레이아웃 ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* 페이지 제목: "## 제목" 처럼 개발 일지 느낌으로 표시 */
+.page-title {
+  font-size: 1.75rem;
+  margin-bottom: 0.3em;
+}
+
+.page-title::before {
+  content: "## ";
+  color: var(--accent);
+}
+
+.page-desc {
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+/* ---------- 카드 · 태그 ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+/* ---------- 헤더 · 내비게이션 ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-h);
+  background: rgba(13, 17, 23, 0.92);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(6px);
+}
+
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  color: #f0f6fc;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.logo:hover { text-decoration: none; }
+
+.logo-prompt { color: var(--accent); }
+
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  background: var(--text);
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* 모바일: 메뉴는 헤더 아래로 펼쳐짐 */
+.site-nav {
+  display: none;
+  position: absolute;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-nav.open { display: block; }
+
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px 16px;
+}
+
+.site-nav a {
+  display: block;
+  padding: 12px 8px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  border-radius: var(--radius);
+}
+
+.site-nav a:hover {
+  background: var(--surface);
+  text-decoration: none;
+}
+
+/* 현재 페이지 표시 */
+.site-nav a[aria-current="page"] {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.site-nav a[aria-current="page"]::before {
+  content: "> ";
+}
+
+/* 데스크톱: 가로 메뉴 */
+@media (min-width: 768px) {
+  .nav-toggle { display: none; }
+
+  .site-nav {
+    display: block;
+    position: static;
+    background: transparent;
+    border: 0;
+  }
+
+  .site-nav ul {
+    flex-direction: row;
+    gap: 4px;
+    padding: 0;
+  }
+
+  .site-nav a {
+    padding: 8px 12px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ---------- 푸터 ---------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-inner p { margin: 0; }
+
+.footer-brand {
+  font-family: var(--font-mono);
+  color: var(--text);
+}
+
+.footer-brand span { color: var(--accent); }
+
+
+/* ==========================================================
+   반응형 (모바일 우선: 기본 스타일이 모바일, 아래에서 점점 넓어짐)
+   기준 화면: 모바일 ~767px / 태블릿 768px~ / PC 1024px~
+   ========================================================== */
+
+/* ---------- 화면 넘침 방지 ---------- */
+img, video, iframe, svg {
+  max-width: 100%;
+}
+
+img { display: block; }
+
+/* 긴 코드·표가 화면 밖으로 나가지 않도록 가로 스크롤 처리 */
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.table-wrap {
+  max-width: 100%;
+  margin: 16px 0;
+  overflow-x: auto;
+}
+
+pre { margin: 16px 0; }
+
+table {
+  width: 100%;
+  min-width: 560px; /* 좁은 화면에서는 칸을 찌그러뜨리지 않고 가로로 스크롤 */
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+  overflow-wrap: normal;
+}
+
+th { background: var(--surface); }
+
+/* ---------- 이미지 비율 유지 ---------- */
+/* 카드 안 이미지: <img class="thumb" ...> 처럼 사용하면 잘림 없이 비율 유지 */
+.thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+/* ---------- 카드 격자 ---------- */
+/* <div class="grid"> 안에 .card 를 넣으면 화면 너비에 맞춰 열 수가 자동으로 바뀜 */
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+/* ---------- 터치 사용성 ---------- */
+@media (pointer: coarse) {
+  .site-nav a { min-height: 44px; }
+}
+
+/* ---------- 작은 모바일 ---------- */
+@media (max-width: 480px) {
+  .page-title { font-size: 1.5rem; }
+  main { padding: 28px 0 48px; }
+}
+
+/* ---------- 태블릿 (768px~) ---------- */
+@media (min-width: 768px) {
+  .container { padding: 0 24px; }
+  main { padding: 56px 0 80px; }
+  .page-title { font-size: 2rem; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* ---------- PC (1024px~) ---------- */
+@media (min-width: 1024px) {
+  .container { padding: 0 32px; }
+  .page-title { font-size: 2.25rem; }
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---------- 움직임 줄이기 설정 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .nav-toggle span { transition: none; }
+}

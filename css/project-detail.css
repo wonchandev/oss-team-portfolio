@@ -1,0 +1,34 @@
+/* 상세 페이지에만 적용합니다. 색상과 카드 모양은 공통 스타일을 사용합니다. */
+.detail-sections {
+    display: grid;
+    gap: 24px;
+}
+
+.detail-sections h2 {
+    font-size: 1.25rem;
+}
+
+.detail-sections p:last-child {
+    margin-bottom: 0;
+}
+
+.detail-list {
+    padding-left: 1.5rem;
+}
+
+.detail-list li + li {
+    margin-top: 8px;
+}
+
+/* 화면이 좁으면 링크가 다음 줄로 내려갑니다. */
+.detail-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+}
+
+.detail-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+}

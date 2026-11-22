@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="D팀의 팀 프로젝트와 팀원 개인 프로젝트 결과물을 소개합니다.">
+    <title>프로젝트 갤러리 | D팀</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/projects.css">
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <main id="main">
+        <div class="container">
+            <h1 class="page-title">프로젝트 갤러리</h1>
+            <p class="page-desc">팀 프로젝트와 팀원 개인 프로젝트 결과물을 모아 두었습니다.</p>
+
+            <!-- 검색·필터 (동작: js/filter.js) -->
+            <section class="filter-panel" aria-label="프로젝트 검색 및 필터">
+                <div class="filter-search">
+                    <label for="project-search">프로젝트 검색</label>
+                    <input id="project-search" type="search" placeholder="제목, 설명, 기술로 검색" autocomplete="off">
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label" id="category-label">분류</span>
+                    <div id="category-filter" role="group" aria-labelledby="category-label">
+                        <button type="button" class="filter-btn" data-value="all" aria-pressed="true">전체</button>
+                        <button type="button" class="filter-btn" data-value="team" aria-pressed="false">팀 프로젝트</button>
+                        <button type="button" class="filter-btn" data-value="personal" aria-pressed="false">개인 프로젝트</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label" id="tech-label">기술</span>
+                    <div id="tech-filter" role="group" aria-labelledby="tech-label"></div>
+                </div>
+                <div class="filter-status">
+                    <p id="project-count" role="status" aria-live="polite">프로젝트 7개</p>
+                    <button type="button" class="filter-reset" id="filter-reset" hidden>필터 초기화</button>
+                </div>
+            </section>
+
+            <p class="project-empty" id="project-empty" hidden>조건에 맞는 프로젝트가 없습니다. 검색어나 필터를 바꿔 보세요.</p>
+
+            <!-- 프로젝트 카드 목록
+                 카드를 추가할 때는 <li> 하나를 복사해 data-category(team/personal),
+                 data-tags, 제목, 설명, 링크만 바꿉니다. (검색·필터가 data 속성을 사용합니다) -->
+            <ul class="grid project-grid" id="project-list">
+                <li class="card project-card" data-category="team" data-tags="html css javascript github">
+                    <div class="project-thumb" aria-hidden="true">&lt;/&gt;</div>
+                    <div class="project-body">
+                        <span class="project-kind">팀 프로젝트</span>
+                        <h2 class="project-title">D팀 포트폴리오 웹사이트</h2>
+                        <p class="project-desc">팀원 6명이 Git·GitHub로 협업해 만든 정적 포트폴리오 사이트. 사이트 전체를 개발 일지처럼 구성했습니다.</p>
+                        <ul class="project-tags" aria-label="사용 기술">
+                            <li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JavaScript</li>
+                        </ul>
+                        <a class="project-link" href="project-detail.html">프로젝트 상세 보기<span class="visually-hidden"> - D팀 포트폴리오 웹사이트</span></a>
+                    </div>
+                </li>
+
+                <li class="card project-card" data-category="personal" data-tags="html css javascript">
+                    <div class="project-thumb" aria-hidden="true">01</div>
+                    <div class="project-body">
+                        <span class="project-kind">개인 프로젝트</span>
+                        <h2 class="project-title">이원찬 개인 프로젝트</h2>
+                        <p class="project-desc">이원찬 팀원의 개인 프로젝트입니다. 결과물 설명은 추후 업데이트됩니다.</p>
+                        <ul class="project-tags" aria-label="사용 기술">
+                            <li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JavaScript</li>
+                        </ul>
+                        <a class="project-link" href="https://github.com/wonchandev" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 이원찬 개인 프로젝트 (새 탭)</span></a>
+                    </div>
+                </li>
+
+                <li class="card project-card" data-category="personal" data-tags="html css">
+                    <div class="project-thumb" aria-hidden="true">02</div>
+                    <div class="project-body">
+                        <span class="project-kind">개인 프로젝트</span>
+                        <h2 class="project-title">배하엘 개인 프로젝트</h2>
+                        <p class="project-desc">배하엘 팀원의 개인 프로젝트입니다. 결과물 설명은 추후 업데이트됩니다.</p>
+                        <ul class="project-tags" aria-label="사용 기술">
+                            <li class="tag">HTML</li><li class="tag">CSS</li>
+                        </ul>
+                        <a class="project-link" href="https://github.com/AAA-bae" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 배하엘 개인 프로젝트 (새 탭)</span></a>
+                    </div>
+                </li>
+
+                <li class="card project-card" data-category="personal" data-tags="javascript">
+                    <div class="project-thumb" aria-hidden="true">03</div>
+                    <div class="project-body">
+                        <span class="project-kind">개인 프로젝트</span>
+                        <h2 class="project-title">최요한 개인 프로젝트</h2>
+                        <p class="project-desc">최요한 팀원의 개인 프로젝트입니다. 결과물 설명은 추후 업데이트됩니다.</p>
+                        <ul class="project-tags" aria-label="사용 기술">
+                            <li class="tag">JavaScript</li>
+                        </ul>
+                        <a class="project-link" href="https://github.com/yohan070312" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 최요한 개인 프로젝트 (새 탭)</span></a>
+                    </div>
+                </li>
+
+                <li class="card project-card" data-category="personal" data-tags="html css javascript">
+                    <div class="project-thumb" aria-hidden="true">04</div>
+                    <div class="project-body">
+                        <span class="project-kind">개인 프로젝트</span>
+                        <h2 class="project-title">이성민 개인 프로젝트</h2>
+                        <p class="project-desc">이성민 팀원의 개인 프로젝트입니다. 결과물 설명은 추후 업데이트됩니다.</p>
+                        <ul class="project-tags" aria-label="사용 기술">
+                            <li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JavaScript</li>
+                        </ul>
+                        <a class="project-link" href="https://github.com/csckcsj" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 이성민 개인 프로젝트 (새 탭)</span></a>
+                    </div>
+                </li>
+
+                <li class="card project-card" data-category="personal" data-tags="html css">
+                    <div class="project-thumb" aria-hidden="true">05</div>
+                    <div class="project-body">
+                        <span class="project-kind">개인 프로젝트</span>
+                        <h2 class="project-title">이세루 개인 프로젝트</h2>
+                        <p class="project-desc">이세루 팀원의 개인 프로젝트입니다. 결과물 설명은 추후 업데이트됩니다.</p>
+                        <ul class="project-tags" aria-label="사용 기술">
+                            <li class="tag">HTML</li><li class="tag">CSS</li>
+                        </ul>
+                        <a class="project-link" href="https://github.com/SSe-a11y-spec" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 이세루 개인 프로젝트 (새 탭)</span></a>
+                    </div>
+                </li>
+
+                <li class="card project-card" data-category="personal" data-tags="javascript css">
+                    <div class="project-thumb" aria-hidden="true">06</div>
+                    <div class="project-body">
+                        <span class="project-kind">개인 프로젝트</span>
+                        <h2 class="project-title">이동우 개인 프로젝트</h2>
+                        <p class="project-desc">이동우 팀원의 개인 프로젝트입니다. 결과물 설명은 추후 업데이트됩니다.</p>
+                        <ul class="project-tags" aria-label="사용 기술">
+                            <li class="tag">JavaScript</li><li class="tag">CSS</li>
+                        </ul>
+                        <a class="project-link" href="https://github.com/lily0012331-sketch" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 이동우 개인 프로젝트 (새 탭)</span></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="js/common.js"></script>
+    <script src="js/filter.js"></script>
+</body>
+</html>

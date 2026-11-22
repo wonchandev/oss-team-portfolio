@@ -1,0 +1,85 @@
+/* ==========================================================
+   FAQ 페이지(faq.html) 전용 스타일
+   ========================================================== */
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  padding: 0;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: transparent;
+  border: 0;
+  color: #f0f6fc;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* 카드의 overflow: hidden에 키보드 초점 테두리가 잘리지 않도록 안쪽에 표시 */
+.faq-question:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
+}
+
+.faq-question:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.faq-item.is-open .faq-question {
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.faq-item.is-open .faq-icon {
+  color: var(--accent);
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  display: none;
+  padding: 16px 20px 20px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.faq-item.is-open .faq-answer {
+  display: block;
+}
+
+.faq-answer p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .faq-question {
+    padding: 16px;
+    font-size: 0.95rem;
+  }
+
+  .faq-answer {
+    padding: 14px 16px 18px;
+  }
+}

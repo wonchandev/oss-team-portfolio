@@ -30,6 +30,12 @@
   cursor: pointer;
 }
 
+/* 카드의 overflow: hidden에 키보드 초점 테두리가 잘리지 않도록 안쪽에 표시 */
+.faq-question:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
+}
+
 .faq-question:hover {
   background: rgba(255, 255, 255, 0.03);
 }

@@ -45,7 +45,8 @@
       var subs = w.items.map(function (item) {
         return '<li><button type="button" class="sub-item' +
           (item.id === firstId ? " is-active" : "") +
-          '" data-target="' + item.id + '">' + item.title + "</button></li>";
+          '" data-target="' + item.id + '" aria-controls="' + item.id +
+          '" aria-pressed="' + String(item.id === firstId) + '">' + item.title + "</button></li>";
       }).join("");
       return '<div class="week-group"><div class="week-heading">' + w.label + '</div><ul class="sub-list">' + subs + "</ul></div>";
     }).join("");
@@ -60,7 +61,12 @@
     if (!btn) { return; }
     var targetId = btn.getAttribute("data-target");
 
-    sidebarEl.querySelectorAll(".sub-item").forEach(function (b) { b.classList.toggle("is-active", b === btn); });
+    sidebarEl.querySelectorAll(".sub-item").forEach(function (b) {
+      var selected = b === btn;
+      b.classList.toggle("is-active", selected);
+      // 시각적인 선택 표시와 보조기기에 전달되는 상태를 함께 갱신합니다.
+      b.setAttribute("aria-pressed", String(selected));
+    });
     viewerEl.querySelectorAll(".log-detail").forEach(function (p) { p.classList.toggle("is-active", p.id === targetId); });
   });
 

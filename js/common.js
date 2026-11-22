@@ -21,7 +21,8 @@
     { href: "members.html", label: "팀원" },
     { href: "projects.html", label: "프로젝트" },
     { href: "activities.html", label: "활동 기록" },
-    { href: "faq.html", label: "FAQ" }
+    { href: "faq.html", label: "FAQ" },
+    { href: "contact.html", label: "문의" }
   ];
 
   // 메뉴에 없는 하위 페이지는 상위 메뉴를 "현재 페이지"로 표시

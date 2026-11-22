@@ -1,0 +1,135 @@
+/* ==========================================================
+   활동 기록 페이지(activities.html) 전용 스타일
+   ========================================================== */
+
+.activity-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .activity-layout {
+    grid-template-columns: 260px 1fr;
+    gap: 24px;
+  }
+}
+
+.activity-sidebar {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.week-group {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.week-heading {
+  padding: 11px 14px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-bottom: 1px solid var(--border);
+}
+
+.sub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  padding: 8px;
+}
+
+.sub-item {
+  width: 100%;
+  padding: 9px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius) - 2px);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sub-item:hover {
+  background: var(--surface);
+  color: #f0f6fc;
+}
+
+.sub-item.is-active {
+  background: var(--surface);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.sub-item.is-active::before {
+  content: "> ";
+  font-family: var(--font-mono);
+}
+
+.activity-viewer {
+  min-height: 420px;
+  padding: 24px;
+}
+
+@media (min-width: 768px) {
+  .activity-viewer {
+    padding: 32px;
+  }
+}
+
+.log-detail {
+  display: none;
+}
+
+.log-detail.is-active {
+  display: block;
+}
+
+.log-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.log-header time {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.log-title {
+  font-size: 1.4rem;
+  margin-bottom: 0.75em;
+}
+
+.log-photo {
+  margin: 24px 0 0;
+  padding: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.log-photo figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+}

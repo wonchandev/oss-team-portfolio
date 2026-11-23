@@ -41,7 +41,10 @@
   });
 
   var TECH_LABELS = {
-    html: "HTML", css: "CSS", javascript: "JavaScript", github: "GitHub"
+    html: "HTML", css: "CSS", javascript: "JavaScript", github: "GitHub",
+    react: "React", typescript: "TypeScript", django: "Django",
+    python: "Python", mariadb: "MariaDB", llm: "LLM",
+    java: "Java", gps: "GPS", sql: "SQL", json: "JSON"
   };
 
   function techLabel(key) {

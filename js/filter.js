@@ -43,7 +43,8 @@
   var TECH_LABELS = {
     html: "HTML", css: "CSS", javascript: "JavaScript", github: "GitHub",
     react: "React", typescript: "TypeScript", django: "Django",
-    python: "Python", mariadb: "MariaDB", llm: "LLM"
+    python: "Python", mariadb: "MariaDB", llm: "LLM",
+    java: "Java", gps: "GPS", sql: "SQL"
   };
 
   function techLabel(key) {

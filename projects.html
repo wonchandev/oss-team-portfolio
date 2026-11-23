@@ -103,23 +103,31 @@
                     </div>
                 </li>
 
-                <li class="card project-card" data-category="personal" data-tags="python">
+                <li class="card project-card" data-category="personal" data-tags="python json">
                     <div class="project-thumb" aria-hidden="true">03</div>
                     <div class="project-body">
                         <span class="project-kind">개인 프로젝트</span>
-                        <h2 class="project-title">수학 퀴즈 및 오답 노트 프로그램</h2>
+                        <h2 class="project-title">MathDrill-CLI (공학수학 기초 훈련 &amp; 오답 아카이브)</h2>
                         <p class="project-desc">
-                            고교~대학 기초 수학(이차방정식의 근, 미분 기초 규칙, 행렬 덧셈 등) 문제를
-                            랜덤으로 출제하고 점수를 매기는 프로그램입니다. random.randint로 계수를 만들어
-                            정답을 판별하고, 틀린 문제는 오답 리스트에 저장해 마지막에 다시 풀 수 있습니다.
-                            시도 횟수, 정답률(%), 소요 시간을 출력합니다.
+                            학부 1학년 수준의 파이썬 기본 문법(조건문, 반복문, 함수, 딕셔너리, 파일 입출력)으로
+                            구현하는 터미널 수학 훈련 프로그램입니다. 수식 문자열을 직접 파싱하는 대신
+                            random.randint로 계수를 무작위로 바꾸는 단답식 구조를 사용해, 행렬 덧셈과 행렬식,
+                            기초 도함수와 편미분, 벡터 내적, 무한등비급수, 이항분포 기댓값 문제를 자동으로 출제하고
+                            정답을 검증합니다. 틀린 문제는 오답 리스트에 저장해 다시 풀 수 있고, 시도 횟수와
+                            정답률(%), 소요 시간을 출력합니다.
+                        </p>
+                        <p class="project-desc">
+                            발전 계획: 5문제 연속 풀이 → 오답을 notes.json에 저장해 &ldquo;오답만 모아 풀기&rdquo; 추가
+                            → 실수 오차 허용 비교(abs(user_ans - real_ans) &lt; 0.01) → sympy로 더 복잡한
+                            미분·적분 문제 자동 생성.
                         </p>
                         <ul class="project-tags" aria-label="사용 기술">
                             <li class="tag">Python</li>
                             <li class="tag">random</li>
                             <li class="tag">time</li>
+                            <li class="tag">JSON</li>
                         </ul>
-                        <a class="project-link" href="https://github.com/yohan070312" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 수학 퀴즈 및 오답 노트 프로그램 (새 탭)</span></a>
+                        <a class="project-link" href="https://github.com/yohan070312" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - MathDrill-CLI (새 탭)</span></a>
                     </div>
                 </li>
 

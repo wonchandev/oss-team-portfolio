@@ -60,81 +60,125 @@
                     </div>
                 </li>
 
-                <li class="card project-card" data-category="personal" data-tags="html css javascript">
+                <li class="card project-card" data-category="personal" data-tags="react typescript django python mariadb llm">
                     <div class="project-thumb" aria-hidden="true">01</div>
                     <div class="project-body">
                         <span class="project-kind">개인 프로젝트</span>
-                        <h2 class="project-title">이원찬 개인 프로젝트</h2>
-                        <p class="project-desc">이원찬 팀원의 개인 프로젝트입니다. 결과물 설명은 추후 업데이트됩니다.</p>
+                        <h2 class="project-title">순라이프 (Soonlife)</h2>
+                        <p class="project-desc">
+                            순천향대학교 학생들의 편리한 대학 생활을 위한 통합 웹 서비스입니다.
+                            학사 공지사항, 학사 정보 조회, AI 기반 학사 챗봇 등
+                            학교생활에 필요한 다양한 기능을 하나의 플랫폼에서 제공합니다.
+                            백엔드 개발부터 AI 모델 최적화, 서버 인프라 구축 및 운영까지 담당하고 있습니다.
+                        </p>
                         <ul class="project-tags" aria-label="사용 기술">
-                            <li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JavaScript</li>
+                            <li class="tag">React</li>
+                            <li class="tag">TypeScript</li>
+                            <li class="tag">Django</li>
+                            <li class="tag">MariaDB</li>
+                            <li class="tag">LLM Distillation</li>
+                            <li class="tag">LoRA</li>
+                            <li class="tag">vLLM</li>
                         </ul>
-                        <a class="project-link" href="https://github.com/wonchandev" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 이원찬 개인 프로젝트 (새 탭)</span></a>
+                        <a class="project-link" href="https://soonlife.net/" target="_blank" rel="noopener noreferrer">
+                            순라이프 서비스 바로가기
+                            <span class="visually-hidden"> - 순라이프 (새 탭)</span>
+                        </a>
                     </div>
                 </li>
 
-                <li class="card project-card" data-category="personal" data-tags="html css">
+                <li class="card project-card" data-category="team" data-tags="html css">
                     <div class="project-thumb" aria-hidden="true">02</div>
                     <div class="project-body">
-                        <span class="project-kind">개인 프로젝트</span>
-                        <h2 class="project-title">배하엘 개인 프로젝트</h2>
-                        <p class="project-desc">배하엘 팀원의 개인 프로젝트입니다. 결과물 설명은 추후 업데이트됩니다.</p>
+                        <span class="project-kind">팀 프로젝트 · 배하엘 담당</span>
+                        <h2 class="project-title">D팀 포트폴리오: 팀 소개·문의 페이지</h2>
+                        <p class="project-desc">
+                            현재 진행 중인 팀 프로젝트 D팀 포트폴리오에서 팀 소개 페이지와 문의 페이지를
+                            맡아 제작했습니다. 두 페이지를 공통 메뉴에 연결해 다른 페이지와 같은 디자인으로 구성했습니다.
+                        </p>
                         <ul class="project-tags" aria-label="사용 기술">
                             <li class="tag">HTML</li><li class="tag">CSS</li>
                         </ul>
-                        <a class="project-link" href="https://github.com/AAA-bae" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 배하엘 개인 프로젝트 (새 탭)</span></a>
+                        <a class="project-link" href="about.html">팀 소개 페이지 보기</a>
                     </div>
                 </li>
 
-                <li class="card project-card" data-category="personal" data-tags="javascript">
+                <li class="card project-card" data-category="personal" data-tags="python json">
                     <div class="project-thumb" aria-hidden="true">03</div>
                     <div class="project-body">
                         <span class="project-kind">개인 프로젝트</span>
-                        <h2 class="project-title">최요한 개인 프로젝트</h2>
-                        <p class="project-desc">최요한 팀원의 개인 프로젝트입니다. 결과물 설명은 추후 업데이트됩니다.</p>
+                        <h2 class="project-title">MathDrill-CLI (공학수학 기초 훈련 &amp; 오답 아카이브)</h2>
+                        <p class="project-desc">
+                            학부 1학년 수준의 파이썬 기본 문법(조건문, 반복문, 함수, 딕셔너리, 파일 입출력)으로
+                            구현하는 터미널 수학 훈련 프로그램입니다. 수식 문자열을 직접 파싱하는 대신
+                            random.randint로 계수를 무작위로 바꾸는 단답식 구조를 사용해, 행렬 덧셈과 행렬식,
+                            기초 도함수와 편미분, 벡터 내적, 무한등비급수, 이항분포 기댓값 문제를 자동으로 출제하고
+                            정답을 검증합니다. 틀린 문제는 오답 리스트에 저장해 다시 풀 수 있고, 시도 횟수와
+                            정답률(%), 소요 시간을 출력합니다.
+                        </p>
+                        <p class="project-desc">
+                            발전 계획: 5문제 연속 풀이 → 오답을 notes.json에 저장해 &ldquo;오답만 모아 풀기&rdquo; 추가
+                            → 실수 오차 허용 비교(abs(user_ans - real_ans) &lt; 0.01) → sympy로 더 복잡한
+                            미분·적분 문제 자동 생성.
+                        </p>
                         <ul class="project-tags" aria-label="사용 기술">
-                            <li class="tag">JavaScript</li>
+                            <li class="tag">Python</li>
+                            <li class="tag">random</li>
+                            <li class="tag">time</li>
+                            <li class="tag">JSON</li>
                         </ul>
-                        <a class="project-link" href="https://github.com/yohan070312" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 최요한 개인 프로젝트 (새 탭)</span></a>
+                        <a class="project-link" href="https://github.com/yohan070312" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - MathDrill-CLI (새 탭)</span></a>
                     </div>
                 </li>
 
-                <li class="card project-card" data-category="personal" data-tags="html css javascript">
+                <li class="card project-card" data-category="personal" data-tags="java css javascript gps sql">
                     <div class="project-thumb" aria-hidden="true">04</div>
                     <div class="project-body">
                         <span class="project-kind">개인 프로젝트</span>
-                        <h2 class="project-title">이성민 개인 프로젝트</h2>
-                        <p class="project-desc">이성민 팀원의 개인 프로젝트입니다. 결과물 설명은 추후 업데이트됩니다.</p>
+                        <h2 class="project-title">포트홀 알람 앱</h2>
+                        <p class="project-desc">포트홀로 인한 사고가 매년 증가해서 이를 방지 할 수 있는 알람 앱을 만들었습니다. 운전자가 근처에 포트홀을 발견하면 음성 인식 기술로 현재 위치에 포트홀이 있다고 말하면 gps 기술을 활용하여 사용자의 위치를 파악하고 정확한 위치는 아니지만 근처에 포트홀이 있다고 데이터베이스에 저장합니다. 그 후 다른 사용자가 근처 위치에 접근하면 근처에 포트홀이 있다고 알림이 갑니다.</p>
+                        <ul class="project-tags" aria-label="사용 기술">
+                            <li class="tag">JAVA</li>
+                            <li class="tag">CSS</li>
+                            <li class="tag">JavaScript</li>
+                            <li class="tag">GPS</li>
+                            <li class="tag">SQL</li>
+                        </ul>
+                        <a class="project-link" href="https://github.com/csckcsj" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 포트홀 알람 앱 (새 탭)</span></a>
+                    </div>
+                </li>
+
+                <li class="card project-card" data-category="team" data-tags="html css javascript">
+                    <div class="project-thumb" aria-hidden="true">05</div>
+                    <div class="project-body">
+                        <span class="project-kind">팀 프로젝트 · 이세루 담당</span>
+                        <h2 class="project-title">D팀 포트폴리오: 활동 기록·FAQ 페이지</h2>
+                        <p class="project-desc">
+                            현재 진행 중인 팀 프로젝트 D팀 포트폴리오에서 활동 기록 페이지와 FAQ 페이지를
+                            맡아 제작했습니다. 활동 기록은 데이터 파일과 스크립트를 분리해 관리하고,
+                            FAQ는 질문을 펼치고 접을 수 있도록 JavaScript로 구현했습니다.
+                        </p>
                         <ul class="project-tags" aria-label="사용 기술">
                             <li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JavaScript</li>
                         </ul>
-                        <a class="project-link" href="https://github.com/csckcsj" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 이성민 개인 프로젝트 (새 탭)</span></a>
+                        <a class="project-link" href="faq.html">FAQ 페이지 보기</a>
                     </div>
                 </li>
 
-                <li class="card project-card" data-category="personal" data-tags="html css">
-                    <div class="project-thumb" aria-hidden="true">05</div>
-                    <div class="project-body">
-                        <span class="project-kind">개인 프로젝트</span>
-                        <h2 class="project-title">이세루 개인 프로젝트</h2>
-                        <p class="project-desc">이세루 팀원의 개인 프로젝트입니다. 결과물 설명은 추후 업데이트됩니다.</p>
-                        <ul class="project-tags" aria-label="사용 기술">
-                            <li class="tag">HTML</li><li class="tag">CSS</li>
-                        </ul>
-                        <a class="project-link" href="https://github.com/SSe-a11y-spec" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 이세루 개인 프로젝트 (새 탭)</span></a>
-                    </div>
-                </li>
-
-                <li class="card project-card" data-category="personal" data-tags="javascript css">
+                <li class="card project-card" data-category="team" data-tags="html css javascript">
                     <div class="project-thumb" aria-hidden="true">06</div>
                     <div class="project-body">
-                        <span class="project-kind">개인 프로젝트</span>
-                        <h2 class="project-title">이동우 개인 프로젝트</h2>
-                        <p class="project-desc">이동우 팀원의 개인 프로젝트입니다. 결과물 설명은 추후 업데이트됩니다.</p>
+                        <span class="project-kind">팀 프로젝트 · 이동우 담당</span>
+                        <h2 class="project-title">D팀 포트폴리오: 프로젝트 상세·접근성 개선</h2>
+                        <p class="project-desc">
+                            현재 진행 중인 팀 프로젝트 D팀 포트폴리오에서 프로젝트 상세 페이지를 만들고
+                            홈과 갤러리에서 연결했습니다. 전체 페이지의 웹 접근성과 키보드 사용성을 점검해
+                            개선하고, 점검 결과를 문서로 기록했습니다.
+                        </p>
                         <ul class="project-tags" aria-label="사용 기술">
-                            <li class="tag">JavaScript</li><li class="tag">CSS</li>
+                            <li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JavaScript</li>
                         </ul>
-                        <a class="project-link" href="https://github.com/lily0012331-sketch" target="_blank" rel="noopener noreferrer">GitHub 프로필 보기<span class="visually-hidden"> - 이동우 개인 프로젝트 (새 탭)</span></a>
+                        <a class="project-link" href="project-detail.html">프로젝트 상세 페이지 보기</a>
                     </div>
                 </li>
             </ul>

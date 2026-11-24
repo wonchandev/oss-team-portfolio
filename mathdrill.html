@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MathDrill - 고교 핵심 및 기초 연산 역량 진단 퀴즈</title>
+  <!-- KaTeX for math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --primary-subtle: #eff6ff;
+      --success: #15803d;
+      --success-subtle: #dcfce7;
+      --danger: #b91c1c;
+      --danger-subtle: #fee2e2;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", Roboto, "Malgun Gothic", sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2.5rem 1rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      background: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .badge-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      background: var(--primary-subtle);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background-color: var(--border);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-bottom: 1.75rem;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-light), var(--primary));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-card {
+      margin-bottom: 1.5rem;
+    }
+
+    .question-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .q-number {
+      font-weight: 700;
+      color: var(--primary-light);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .q-category {
+      background: #f1f5f9;
+      color: #334155;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+    }
+
+    .q-text {
+      font-size: 1.12rem;
+      line-height: 1.8;
+      font-weight: 500;
+      margin-bottom: 1.75rem;
+      word-break: keep-all;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+      .container {
+        padding: 1.5rem;
+      }
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.15rem;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s ease;
+      outline: none;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary-light);
+      background: var(--primary-subtle);
+    }
+
+    .option-btn .num-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .option-btn.correct {
+      background: var(--success-subtle) !important;
+      border-color: var(--success) !important;
+      color: var(--success) !important;
+      font-weight: 700;
+    }
+
+    .option-btn.wrong {
+      background: var(--danger-subtle) !important;
+      border-color: var(--danger) !important;
+      color: var(--danger) !important;
+    }
+
+    .explanation-box {
+      display: none;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-left: 4px solid var(--primary-light);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      animation: fadeIn 0.25s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .explanation-box.correct-box {
+      border-left-color: var(--success);
+      background: #f0fdf4;
+    }
+
+    .explanation-box.wrong-box {
+      border-left-color: var(--danger);
+      background: #fef2f2;
+    }
+
+    .exp-title {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .exp-content {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #334155;
+    }
+
+    .nav-btn {
+      display: none;
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--primary);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      background: #172554;
+    }
+
+    /* Result Section */
+    .result-section {
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--primary-subtle);
+      border: 4px solid var(--primary-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem auto 1.5rem;
+    }
+
+    .score-num {
+      font-size: 2.25rem;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .score-total {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .weakness-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+      text-align: left;
+    }
+
+    .weakness-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--danger);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .weakness-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .weakness-item {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .all-clear-badge {
+      background: #dcfce7;
+      color: #166534;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+
+    .history-table th, .history-table td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .history-table th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .tag-correct {
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .tag-wrong {
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    .restart-btn {
+      margin-top: 2rem;
+      padding: 0.9rem 2rem;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .restart-btn:hover {
+      background: #172554;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>MathDrill</h1>
+    <p>고교 핵심 수학 &amp; 기초 연산 역량 진단 퀴즈</p>
+    <div class="badge-bar">
+      <span class="badge">18개 필수 단원 무작위 10문항</span>
+      <span class="badge">등차·등비 단조증가 선지</span>
+      <span class="badge">즉각 단계별 해설</span>
+      <span class="badge">취약 단원 자동 분석</span>
+    </div>
+  </header>
+
+  <!-- Quiz Screen -->
+  <div id="quiz-screen">
+    <div class="progress-bar-container">
+      <div class="progress-bar-fill" id="progress-bar"></div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-meta">
+        <span class="q-number" id="q-counter">QUESTION 01 / 10</span>
+        <span class="q-category" id="q-category">카테고리</span>
+      </div>
+      <div class="q-text" id="q-text">문제가 로딩 중입니다...</div>
+      
+      <div class="options-grid" id="options-grid"></div>
+
+      <div class="explanation-box" id="explanation-box">
+        <div class="exp-title" id="exp-title"></div>
+        <div class="exp-content" id="exp-content"></div>
+      </div>
+
+      <button class="nav-btn" id="next-btn" onclick="nextQuestion()">다음 문제로 이동</button>
+    </div>
+  </div>
+
+  <!-- Result Screen -->
+  <div class="result-section" id="result-screen">
+    <h2 style="font-size: 1.5rem; font-weight: 800; color: #1e293b;">진단 결과 종합</h2>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">10문항 중 정답 수 및 취약 단원 분석</p>
+
+    <div class="score-circle">
+      <div class="score-num" id="final-score">0</div>
+      <div class="score-total">/ 10</div>
+    </div>
+    
+    <div id="score-comment" style="font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem;"></div>
+
+    <div class="weakness-card">
+      <div class="weakness-title">
+        <span>⚠️ 집중 보완이 필요한 취약 단원</span>
+      </div>
+      <div id="weakness-container"></div>
+    </div>
+
+    <h3 style="text-align: left; font-size: 1rem; margin-top: 1.75rem; color: #334155;">문항별 풀이 결과</h3>
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>단원</th>
+          <th>결과</th>
+          <th>정답</th>
+        </tr>
+      </thead>
+      <tbody id="history-tbody"></tbody>
+    </table>
+
+    <button class="restart-btn" onclick="startQuiz()">새로운 문제로 다시 풀기</button>
+  </div>
+</div>
+
+<script>
+/* =========================================================================
+   1. Fraction (기약분수) 및 산술 유틸리티
+   ========================================================================= */
+function gcd(a, b) {
+  a = Math.abs(a);
+  b = Math.abs(b);
+  while (b) {
+    let t = b;
+    b = a % b;
+    a = t;
+  }
+  return a;
+}
+
+class Fraction {
+  constructor(num, den = 1) {
+    if (den === 0) throw new Error("분모는 0이 될 수 없습니다.");
+    let sign = (num * den < 0) ? -1 : 1;
+    num = Math.abs(num);
+    den = Math.abs(den);
+    let g = gcd(num, den);
+    this.num = sign * (num / g);
+    this.den = den / g;
+  }
+
+  isInteger() {
+    return this.den === 1;
+  }
+
+  toTex() {
+    if (this.den === 1) return `${this.num}`;
+    if (this.num < 0) return `-\\frac{${Math.abs(this.num)}}{${this.den}}`;
+    return `\\frac{${this.num}}{${this.den}}`;
+  }
+
+  valueOf() {
+    return this.num / this.den;
+  }
+}
+
+function randInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randChoice(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function nCr(n, r) {
+  if (r < 0 || r > n) return 0;
+  if (r === 0 || r === n) return 1;
+  let num = 1, den = 1;
+  for (let i = 1; i <= r; i++) {
+    num *= (n - i + 1);
+    den *= i;
+  }
+  return Math.round(num / den);
+}
+
+/* =========================================================================
+   2. 수열 선지 생성 엔진 (등차수열 또는 등비수열, 단조 증가 보장)
+   ========================================================================= */
+function makeProgressiveOptions(correctFrac) {
+  let val = correctFrac.valueOf();
+  
+  // 1) 2의 거듭제곱 (2, 4, 8, 16 등) -> 등비수열(공비 2)
+  if (correctFrac.isInteger() && [2, 4, 8, 16, 32].includes(correctFrac.num)) {
+    let powers = [1, 2, 4, 8, 16, 32, 64];
+    let idx = powers.indexOf(correctFrac.num);
+    let validStarts = [];
+    for (let k = 0; k < 4; k++) {
+      let start = idx - k;
+      if (start >= 0 && start + 3 < powers.length) {
+        validStarts.push(start);
+      }
+    }
+    if (validStarts.length > 0) {
+      let start = randChoice(validStarts);
+      let optFracs = [0, 1, 2, 3].map(i => new Fraction(powers[start + i]));
+      let correctIdx = optFracs.findIndex(f => f.num === correctFrac.num && f.den === correctFrac.den);
+      return {
+        options: optFracs.map(f => `$${f.toTex()}$`),
+        correctIndex: correctIdx
+      };
+    }
+  }
+
+  // 2) 정수형 등차수열
+  if (correctFrac.isInteger()) {
+    let correctIdx = randInt(0, 3);
+    let possibleD = [1, 2, 3];
+    if (Math.abs(val) > 15) possibleD.push(4, 5);
+    
+    let validD = possibleD.filter(d => (val - correctIdx * d) >= 1);
+    let d = (validD.length > 0) ? randChoice(validD) : 1;
+    let a1 = val - correctIdx * d;
+    if (a1 <= 0) {
+      a1 = 1;
+      if (val > 1) {
+        let diff = val - a1;
+        if (diff <= 3) { d = 1; correctIdx = diff; }
+        else { d = 2; correctIdx = Math.min(3, Math.floor(diff / 2)); a1 = val - correctIdx * d; }
+      } else {
+        d = 1; correctIdx = 0; a1 = val;
+      }
+    }
+    let optFracs = [0, 1, 2, 3].map(i => new Fraction(a1 + i * d));
+    return {
+      options: optFracs.map(f => `$${f.toTex()}$`),
+      correctIndex: correctIdx
+    };
+  } else {
+    // 3) 기약분수 등차수열
+    let den = correctFrac.den;
+    let num = correctFrac.num;
+    let correctIdx = randInt(0, 3);
+    let possibleD = [1, 2];
+    let validD = possibleD.filter(step => (num - correctIdx * step) >= 1);
+    let stepNum = (validD.length > 0) ? randChoice(validD) : 1;
+    let startNum = num - correctIdx * stepNum;
+    if (startNum <= 0) {
+      startNum = 1;
+      stepNum = 1;
+      correctIdx = num - startNum;
+      if (correctIdx < 0 || correctIdx > 3) {
+        correctIdx = 0;
+        startNum = num;
+      }
+    }
+    let optFracs = [0, 1, 2, 3].map(i => new Fraction(startNum + i * stepNum, den));
+    return {
+      options: optFracs.map(f => `$${f.toTex()}$`),
+      correctIndex: correctIdx
+    };
+  }
+}
+
+/* =========================================================================
+   3. 요청된 18개 핵심 수학 영역 제너레이터 (Procedural Problem Generators)
+   ========================================================================= */
+
+// [1] 다항식의 곱셈공식
+function genPolyMul() {
+  let S = randInt(4, 7);
+  let P = randInt(2, Math.floor((S * S) / 4));
+  let ans = S * S - 2 * P;
+  return {
+    category: "다항식의 곱셈공식",
+    question: `두 실수 $x, y$ 에 대하여 $x + y = ${S}$, $xy = ${P}$ 일 때, $x^2 + y^2$ 의 값을 구하시오.`,
+    answerFrac: new Fraction(ans),
+    solution: `곱셈공식의 변형: $x^2 + y^2 = (x + y)^2 - 2xy$
+$$x^2 + y^2 = (${S})^2 - 2(${P}) = ${S * S} - ${2 * P} = ${ans}$$`
+  };
+}
+
+// [2] 인수분해
+function genFactorization() {
+  let a = randInt(2, 5);
+  let b = a + randInt(1, 3);
+  let p = a + b;
+  let q = a * b;
+  // x^2 - px + q = (x - a)(x - b)
+  return {
+    category: "인수분해",
+    question: `이차식 $x^2 - ${p}x + ${q}$ 가 $(x - \\alpha)(x - \\beta)$ 로 인수분해될 때, 상수 $\\alpha + \\beta$ 의 값을 구하시오.`,
+    answerFrac: new Fraction(p),
+    solution: `$x^2 - ${p}x + ${q} = (x - ${a})(x - ${b})$ 이므로
+인수분해된 두 상수의 합은 $\\alpha + \\beta = ${p}$ 입니다.`
+  };
+}
+
+// [3] 이차방정식
+function genQuadraticEq() {
+  let alpha = randInt(1, 4);
+  let beta = randInt(alpha + 1, 6);
+  let b = -(alpha + beta);
+  let c = alpha * beta;
+  let signB = (b >= 0) ? `+ ${b}` : `- ${Math.abs(b)}`;
+  return {
+    category: "이차방정식",
+    question: `이차방정식 $x^2 ${signB}x + ${c} = 0$ 의 두 실근 중 더 큰 근의 값을 구하시오.`,
+    answerFrac: new Fraction(beta),
+    solution: `인수분해하면 $(x - ${alpha})(x - ${beta}) = 0$ 이므로 두 근은 $x = ${alpha}, ${beta}$ 입니다.
+따라서 더 큰 근은 $${beta}$ 입니다.`
+  };
+}
+
+// [4] 지수
+function genExponent() {
+  let p = randInt(2, 4);
+  let q = randInt(1, 3);
+  let ans = Math.pow(2, p + q);
+  return {
+    category: "지수",
+    question: `다음 지수법칙 연산의 값을 구하시오.
+$$2^{${p}} \\times 2^{${q}}$$`,
+    answerFrac: new Fraction(ans),
+    solution: `지수법칙 $a^m \\times a^n = a^{m+n}$ 에 의해:
+$$2^{${p}} \\times 2^{${q}} = 2^{${p} + ${q}} = 2^{${p + q}} = ${ans}$$`
+  };
+}
+
+// [5] 로그
+function genLogarithm() {
+  let b = randChoice([2, 3]);
+  let exp = randInt(2, 4);
+  let target = Math.pow(b, exp);
+  let m = randInt(2, 5);
+  let valA = target * m;
+  let valB = m;
+  return {
+    category: "로그",
+    question: `다음 로그 표현식의 값을 구하시오.
+$$\\log_{${b}}(${valA}) - \\log_{${b}}(${valB})$$`,
+    answerFrac: new Fraction(exp),
+    solution: `로그의 뺄셈 성질: $\\log_a M - \\log_a N = \\log_a (M/N)$
+$$\\log_{${b}}(${valA}) - \\log_{${b}}(${valB}) = \\log_{${b}}\\left(\\frac{${valA}}{${valB}}\\right) = \\log_{${b}}(${target}) = \\log_{${b}}(${b}^{${exp}}) = ${exp}$$`
+  };
+}
+
+// [6] 삼각함수
+function genTrigonometry() {
+  let denom = randInt(5, 9);
+  let k = randInt(2, 4);
+  let ans = 1 + k;
+  return {
+    category: "삼각함수",
+    question: `다음 삼각함수 식의 값을 구하시오.
+$$\\left(\\sin^2 \\frac{\\pi}{${denom}} + \\cos^2 \\frac{\\pi}{${denom}}\\right) + ${k} \\tan \\frac{\\pi}{4}$$`,
+    answerFrac: new Fraction(ans),
+    solution: `항등식 $\\sin^2 \\theta + \\cos^2 \\theta = 1$ 및 $\\tan \\frac{\\pi}{4} = 1$ 을 적용합니다:
+$$1 + ${k}(1) = ${ans}$$`
+  };
+}
+
+// [7] 수열 (등차수열의 일반항)
+function genProgression() {
+  let a1 = randInt(2, 5);
+  let d = randInt(2, 4);
+  let n = randInt(4, 6);
+  let ans = a1 + (n - 1) * d;
+  return {
+    category: "수열",
+    question: `첫째항이 $a_1 = ${a1}$ 이고 공차가 $d = ${d}$ 인 등차수열 $\\{a_n\\}$ 에 대하여, 제${n}항 $a_{${n}}$ 의 값을 구하시오.`,
+    answerFrac: new Fraction(ans),
+    solution: `등차수열의 일반항 $a_n = a_1 + (n - 1)d$ 공식에 대입합니다:
+$$a_{${n}} = ${a1} + (${n} - 1) \\times ${d} = ${a1} + ${ (n - 1) * d } = ${ans}$$`
+  };
+}
+
+// [8] 함수의 극한
+function genLimit() {
+  let a = randInt(2, 5);
+  let ans = 2 * a;
+  return {
+    category: "함수의 극한",
+    question: `다음 극한값을 구하시오.
+$$\\lim_{x \\to ${a}} \\frac{x^2 - ${a * a}}{x - ${a}}$$`,
+    answerFrac: new Fraction(ans),
+    solution: `분자를 인수분해하여 약분합니다:
+$$\\frac{x^2 - ${a * a}}{x - ${a}} = \\frac{(x - ${a})(x + ${a})}{x - ${a}} = x + ${a} \\quad (x \\ne ${a})$$
+$$x \\to ${a} \\implies ${a} + ${a} = ${ans}$$`
+  };
+}
+
+// [9] 다항함수의 미분
+function genPolyDiff() {
+  let a = randInt(2, 4);
+  let b = randInt(2, 5);
+  let c = randInt(1, 6);
+  let ans = 3 * a + 2 * b;
+  return {
+    category: "다항함수의 미분",
+    question: `다항함수 $f(x) = ${a}x^3 + ${b}x^2 - ${c}x + 7$ 에 대하여 도함수 값 $f'(1) + ${c}$ 의 값을 구하시오.`,
+    answerFrac: new Fraction(ans),
+    solution: `$$f'(x) = ${3 * a}x^2 + ${2 * b}x - ${c}$$
+$$f'(1) = ${3 * a}(1) + ${2 * b}(1) - ${c} = ${3 * a + 2 * b} - ${c}$$
+따라서 $f'(1) + ${c} = ${ans}$ 입니다.`
+  };
+}
+
+// [10] 다항함수의 적분
+function genPolyIntegral() {
+  let a = randInt(1, 3);
+  let b = randInt(1, 4);
+  // int_0^1 (3a*x^2 + 2b*x) dx = [a*x^3 + b*x^2]_0^1 = a + b
+  let ans = a + b;
+  return {
+    category: "다항함수의 적분",
+    question: `다음 정적분의 값을 구하시오.
+$$\\int_{0}^{1} (${3 * a}x^2 + ${2 * b}x)\\,dx$$`,
+    answerFrac: new Fraction(ans),
+    solution: `부정적분을 구하여 적분 구간 $[0, 1]$ 을 대입합니다:
+$$\\left[ ${a}x^3 + ${b}x^2 \\right]_{0}^{1} = (${a}(1)^3 + ${b}(1)^2) - 0 = ${a} + ${b} = ${ans}$$`
+  };
+}
+
+// [11] 순열
+function genPermutation() {
+  let n = randInt(4, 6);
+  let r = 2;
+  let ans = n * (n - 1);
+  return {
+    category: "순열",
+    question: `서로 다른 ${n}개 중에서 순서를 고려하여 2개를 택하는 순열의 수 $_{${n}}\\mathrm{P}_2$ 의 값을 구하시오.`,
+    answerFrac: new Fraction(ans),
+    solution: `순열 공식 $_n\\mathrm{P}_r = \\frac{n!}{(n-r)!}$ 에 의해:
+$$_{${n}}\\mathrm{P}_2 = ${n} \\times ${n - 1} = ${ans}$$`
+  };
+}
+
+// [12] 조합
+function genCombination() {
+  let n = randInt(5, 7);
+  let ans = (n * (n - 1)) / 2;
+  return {
+    category: "조합",
+    question: `${n}명의 학생 중 대표 2명을 선출하는 경우의 수 $_{${n}}\\mathrm{C}_2$ 의 값을 구하시오.`,
+    answerFrac: new Fraction(ans),
+    solution: `조합 공식 $_n\\mathrm{C}_r = \\frac{n!}{r!(n-r)!}$ 에 의해:
+$$_{${n}}\\mathrm{C}_2 = \\frac{${n} \\times ${n - 1}}{2 \\times 1} = ${ans}$$`
+  };
+}
+
+// [13] 중복조합
+function genCombWithRepetition() {
+  let n = randInt(2, 4);
+  let r = randInt(2, 3);
+  let totalN = n + r - 1;
+  let ans = nCr(totalN, r);
+  return {
+    category: "중복조합",
+    question: `서로 다른 ${n}개 중에서 중복을 허락하여 ${r}개를 택하는 중복조합의 수 $_{${n}}\\mathrm{H}_{${r}}$ 의 값을 구하시오.`,
+    answerFrac: new Fraction(ans),
+    solution: `중복조합 공식 $_n\\mathrm{H}_r = {}_{n+r-1}\\mathrm{C}_r$ 에 의해:
+$$_{${n}}\\mathrm{H}_{${r}} = {}_{${totalN}}\\mathrm{C}_{${r}} = ${ans}$$`
+  };
+}
+
+// [14] 이항정리
+function genBinomialTheorem() {
+  let n = randInt(3, 5);
+  let r = 1;
+  let ans = nCr(n, r);
+  return {
+    category: "이항정리",
+    question: `전개식 $(x + 1)^{${n}}$ 에서 $x$ 의 계수를 구하시오.`,
+    answerFrac: new Fraction(ans),
+    solution: `이항정리의 일반항은 $_{${n}}\\mathrm{C}_r x^r (1)^{${n}-r}$ 입니다.
+$x$ 의 일차항 계수는 $r = 1$ 일 때이므로:
+$$_{${n}}\\mathrm{C}_1 = ${ans}$$`
+  };
+}
+
+// [15] 자연로그함수의 미분
+function genLogDiff() {
+  let a = randInt(2, 5);
+  let b = randInt(1, 3);
+  let x0 = randInt(1, 2);
+  let denom = a * x0 + b;
+  let ansFrac = new Fraction(a, denom);
+  return {
+    category: "자연로그함수의 미분",
+    question: `함수 $f(x) = \\ln(${a}x + ${b})$ 에 대하여 $f'(${x0})$ 의 값을 구하시오.`,
+    answerFrac: ansFrac,
+    solution: `합성함수 미분법: $\\frac{d}{dx}[\\ln(g(x))] = \\frac{g'(x)}{g(x)}$
+$$f'(x) = \\frac{${a}}{${a}x + ${b}} \\implies f'(${x0}) = \\frac{${a}}{${a}(${x0}) + ${b}} = ${ansFrac.toTex()}$$`
+  };
+}
+
+// [16] 자연지수함수의 미분
+function genExpDiff() {
+  let k = randInt(2, 6);
+  return {
+    category: "자연지수함수의 미분",
+    question: `함수 $f(x) = e^{${k}x}$ 에 대하여 $x = 0$ 에서의 미분계수 $f'(0)$ 의 값을 구하시오.`,
+    answerFrac: new Fraction(k),
+    solution: `지수함수의 합성함수 미분법:
+$$f'(x) = ${k}e^{${k}x} \\implies f'(0) = ${k}e^0 = ${k}(1) = ${k}$$`
+  };
+}
+
+// [17] 진법 변환
+function genBaseConversion() {
+  let dec = randInt(9, 15);
+  let binStr = dec.toString(2);
+  return {
+    category: "진법 변환",
+    question: `2진수 $${binStr}_{(2)}$ 를 10진수로 변환한 값을 구하시오.`,
+    answerFrac: new Fraction(dec),
+    solution: `자리값($2^3, 2^2, 2^1, 2^0$)을 전개합니다:
+$$${binStr}_{(2)} = ${binStr.split('').map((bit, idx) => `${bit} \\times 2^{${binStr.length - 1 - idx}}`).join(' + ')} = ${dec}$$`
+  };
+}
+
+// [18] 벡터와 행렬의 간단한 연산
+function genVectorMatrix() {
+  let isMatrix = Math.random() > 0.5;
+  if (isMatrix) {
+    let a = randInt(2, 4);
+    let d = randInt(3, 5);
+    let b = 1;
+    let c = randInt(1, 3);
+    let det = (a * d) - (b * c);
+    return {
+      category: "벡터와 행렬의 간단한 연산",
+      question: `다음 $2 \\times 2$ 정사각행렬 $A$ 의 행렬식 $\\det(A)$ 의 값을 구하시오.
+$$A = \\begin{pmatrix} ${a} & ${b} \\\\ ${c} & ${d} \\end{pmatrix}$$`,
+      answerFrac: new Fraction(det),
+      solution: `$\\det(A) = ad - bc = (${a})(${d}) - (${b})(${c}) = ${a * d} - ${b * c} = ${det}$`
+    };
+  } else {
+    let u1 = randInt(1, 4), u2 = randInt(1, 4);
+    let v1 = randInt(1, 4), v2 = randInt(1, 4);
+    let dot = (u1 * v1) + (u2 * v2);
+    return {
+      category: "벡터와 행렬의 간단한 연산",
+      question: `두 2차원 벡터 $\\vec{u} = (${u1}, ${u2})$, $\\vec{v} = (${v1}, ${v2})$ 의 내적 $\\vec{u} \\cdot \\vec{v}$ 의 값을 구하시오.`,
+      answerFrac: new Fraction(dot),
+      solution: `내적 공식 $\\vec{u} \\cdot \\vec{v} = u_1 v_1 + u_2 v_2$:
+$$\\vec{u} \\cdot \\vec{v} = (${u1} \\times ${v1}) + (${u2} \\times ${v2}) = ${u1 * v1} + ${u2 * v2} = ${dot}$$`
+    };
+  }
+}
+
+// 전체 18개 핵심 제너레이터 배열
+const ALL_GENERATORS = [
+  genPolyMul,            // 1. 다항식 곱셈공식
+  genFactorization,        // 2. 인수분해
+  genQuadraticEq,          // 3. 이차방정식
+  genExponent,             // 4. 지수
+  genLogarithm,            // 5. 로그
+  genTrigonometry,         // 6. 삼각함수
+  genProgression,          // 7. 수열
+  genLimit,                // 8. 함수의 극한
+  genPolyDiff,             // 9. 다항함수의 미분
+  genPolyIntegral,         // 10. 다항함수의 적분
+  genPermutation,          // 11. 순열
+  genCombination,          // 12. 조합
+  genCombWithRepetition,   // 13. 중복조합
+  genBinomialTheorem,      // 14. 이항정리
+  genLogDiff,              // 15. 자연로그함수의 미분
+  genExpDiff,              // 16. 자연지수함수의 미분
+  genBaseConversion,       // 17. 진법 변환
+  genVectorMatrix          // 18. 벡터와 행렬의 간단한 연산
+];
+
+/* =========================================================================
+   4. 퀴즈 실행 및 상태 관리 (State Management)
+   ========================================================================= */
+let questions = [];
+let currentIndex = 0;
+let userAnswers = [];
+let hasAnswered = false;
+
+function buildExam() {
+  // 18개 단원 중 10개 단원을 겹치지 않게 무작위 추출
+  let shuffled = [...ALL_GENERATORS].sort(() => 0.5 - Math.random());
+  let selected = shuffled.slice(0, 10);
+  
+  return selected.map(gen => {
+    let qData = gen();
+    let optData = makeProgressiveOptions(qData.answerFrac);
+    return {
+      category: qData.category,
+      question: qData.question,
+      options: optData.options,
+      correctIndex: optData.correctIndex,
+      solution: qData.solution
+    };
+  });
+}
+
+function startQuiz() {
+  questions = buildExam();
+  currentIndex = 0;
+  userAnswers = [];
+  hasAnswered = false;
+
+  document.getElementById('result-screen').style.display = 'none';
+  document.getElementById('quiz-screen').style.display = 'block';
+
+  renderQuestion();
+}
+
+function renderQuestion() {
+  hasAnswered = false;
+  let q = questions[currentIndex];
+
+  // Progress Bar & Meta
+  let progressPct = (currentIndex / questions.length) * 100;
+  document.getElementById('progress-bar').style.width = `${progressPct}%`;
+  document.getElementById('q-counter').innerText = `QUESTION ${String(currentIndex + 1).padStart(2, '0')} / 10`;
+  document.getElementById('q-category').innerText = q.category;
+
+  // Text
+  document.getElementById('q-text').innerHTML = q.question;
+
+  // Options Grid
+  let grid = document.getElementById('options-grid');
+  grid.innerHTML = '';
+  q.options.forEach((optTex, idx) => {
+    let btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.id = `opt-${idx}`;
+    btn.onclick = () => selectOption(idx);
+
+    let numIcon = ['①', '②', '③', '④'][idx];
+    btn.innerHTML = `<span class="num-label">${numIcon}</span><span>${optTex}</span>`;
+    grid.appendChild(btn);
+  });
+
+  // Reset Explanation & Next Button
+  let expBox = document.getElementById('explanation-box');
+  expBox.style.display = 'none';
+  expBox.className = 'explanation-box';
+  document.getElementById('next-btn').style.display = 'none';
+
+  // KaTeX Re-render
+  renderMath();
+}
+
+function selectOption(selectedIndex) {
+  if (hasAnswered) return;
+  hasAnswered = true;
+
+  let q = questions[currentIndex];
+  let isCorrect = (selectedIndex === q.correctIndex);
+
+  userAnswers.push({
+    questionIndex: currentIndex,
+    category: q.category,
+    selectedIndex: selectedIndex,
+    correctIndex: q.correctIndex,
+    isCorrect: isCorrect
+  });
+
+  // UI Button Highlighting
+  let buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === q.correctIndex) {
+      btn.classList.add('correct');
+    } else if (idx === selectedIndex) {
+      btn.classList.add('wrong');
+    }
+  });
+
+  // Explanation Box
+  let expBox = document.getElementById('explanation-box');
+  let expTitle = document.getElementById('exp-title');
+  let expContent = document.getElementById('exp-content');
+
+  expBox.style.display = 'block';
+  if (isCorrect) {
+    expBox.classList.add('correct-box');
+    expTitle.innerHTML = '✅ <span style="color:var(--success);">정답입니다!</span>';
+  } else {
+    expBox.classList.add('wrong-box');
+    expTitle.innerHTML = '❌ <span style="color:var(--danger);">오답입니다.</span>';
+  }
+
+  expContent.innerHTML = `<strong>[단계별 풀이]</strong><br>${q.solution}`;
+  
+  // KaTeX Re-render
+  renderMath();
+
+  // Next Button
+  let nextBtn = document.getElementById('next-btn');
+  nextBtn.style.display = 'block';
+  if (currentIndex === questions.length - 1) {
+    nextBtn.innerText = '진단 결과 리포트 보기';
+  } else {
+    nextBtn.innerText = '다음 문제로 이동';
+  }
+}
+
+function nextQuestion() {
+  if (currentIndex < questions.length - 1) {
+    currentIndex++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  document.getElementById('quiz-screen').style.display = 'none';
+  let resScreen = document.getElementById('result-screen');
+  resScreen.style.display = 'block';
+
+  let correctCount = userAnswers.filter(a => a.isCorrect).length;
+  document.getElementById('final-score').innerText = correctCount;
+
+  // Evaluation Comment
+  let commentEl = document.getElementById('score-comment');
+  if (correctCount === 10) {
+    commentEl.innerText = "🏆 완벽합니다! 고교 핵심 수학 및 기초 연산력이 매우 탄탄합니다.";
+    commentEl.style.color = "var(--success)";
+  } else if (correctCount >= 7) {
+    commentEl.innerText = "👍 우수한 성적입니다! 취약 단원 위주로 약점을 보완하면 완성도를 더 높일 수 있습니다.";
+    commentEl.style.color = "var(--primary)";
+  } else {
+    commentEl.innerText = "📚 기본 개념 점검이 필요합니다. 아래 오답 단원을 집중 복습해 보세요.";
+    commentEl.style.color = "#d97706";
+  }
+
+  // Weakness Analysis
+  let wrongList = userAnswers.filter(a => !a.isCorrect);
+  let weakCategories = [...new Set(wrongList.map(a => a.category))];
+  let weakContainer = document.getElementById('weakness-container');
+
+  if (weakCategories.length === 0) {
+    weakContainer.innerHTML = '<span class="all-clear-badge">🎉 오답이 없습니다. 전 영역에서 정확한 연산력을 보여주었습니다!</span>';
+  } else {
+    let listHtml = '<ul class="weakness-list">';
+    weakCategories.forEach(cat => {
+      listHtml += `<li class="weakness-item">${cat}</li>`;
+    });
+    listHtml += '</ul>';
+    weakContainer.innerHTML = listHtml;
+  }
+
+  // Question-by-Question Breakdown
+  let tbody = document.getElementById('history-tbody');
+  tbody.innerHTML = '';
+  userAnswers.forEach((ans, i) => {
+    let tr = document.createElement('tr');
+    let numIcon = ['①', '②', '③', '④'][ans.correctIndex];
+    tr.innerHTML = `
+      <td>${i + 1}</td>
+      <td><strong>${ans.category}</strong></td>
+      <td>${ans.isCorrect ? '<span class="tag-correct">정답</span>' : '<span class="tag-wrong">오답</span>'}</td>
+      <td>${numIcon}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderMath() {
+  if (window.renderMathInElement) {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ],
+      throwOnError: false
+    });
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  startQuiz();
+});
+</script>
+</body>
+</html>
